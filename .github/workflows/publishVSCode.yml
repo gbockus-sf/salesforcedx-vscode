@@ -23,8 +23,14 @@ on:
 # The steps.publsh.outputs.result is an indicator that the pulish to the vscode marketplace succeeded.
 # The steps.mergeDevelop.outputs.status is an indicator that all the publish steps completed.
 jobs: 
+  build-all:
+    uses: ./.github/workflows/buildAll.yml
+    with:
+      branch: 'main'
+      label: ${{ inputs.version }}
   gitTag: 
     runs-on: ubuntu-latest
+    needs: ['build-all']
     env: 
       RELEASE_VERSION: ${{ inputs.version }}
     steps: 
@@ -41,6 +47,7 @@ jobs:
             git push origin v${{ env.RELEASE_VERSION }}
   githubRelease:
     runs-on: ubuntu-latest
+    needs: ['build-all']
     env: 
       RELEASE_VERSION: ${{ inputs.version }}
     steps: 
