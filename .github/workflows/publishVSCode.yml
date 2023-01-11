@@ -13,6 +13,11 @@ on:
       status: 
         description: Set to complete if all tasks associated with the workflow were successful.
         value: ${{ jobs.mergeDevelop.outputs.status }}
+  workflow_dispatch:  
+    inputs:
+      version:
+        type: string
+        required: true
 
 # There are two outputs that are a result of running this workflow
 # The steps.publsh.outputs.result is an indicator that the pulish to the vscode marketplace succeeded.
