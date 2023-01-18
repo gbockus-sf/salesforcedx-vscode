@@ -9,11 +9,9 @@ env:
 jobs:
 
   find-release-type: 
-    outputs:
-      type: ${{steps.find.output.type}}
     runs-on: ubuntu-latest
     steps: 
-      - run: echo "Is Prerelease is ${{ env.PRERELEASE }}"
+      - run: echo "Is Prerelease is ${{ env.IS_PRE_RELEASE }}"
   should-skip: 
     if: ${{ env.IS_PRE_RELEASE }}
     runs-on: ubuntu-latest
