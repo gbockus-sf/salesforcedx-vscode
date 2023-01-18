@@ -3,17 +3,14 @@ on:
   release:
     types: [published]
     
-
-env:
-  IS_PRE_RELEASE: ${{ github.event.release.prerelease }}
 jobs:
 
   find-release-type: 
     runs-on: ubuntu-latest
     steps: 
-      - run: echo "Is Prerelease is ${{ env.IS_PRE_RELEASE }}"
+      - run: echo "Is Prerelease is ${{ github.event.release.prerelease }}"
   should-skip: 
-    if: ${{ env.IS_PRE_RELEASE }}
+    if: ${{ github.event.release.prerelease }}
     runs-on: ubuntu-latest
     steps: 
       - run: echo "Is Def a prerelease"
