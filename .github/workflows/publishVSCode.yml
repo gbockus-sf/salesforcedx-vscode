@@ -47,5 +47,6 @@ jobs:
         run: | 
           mkdir ./extensions
           echo v${{ env.PUBLISH_VERSION }} 
+          gh release download v${{ env.PUBLISH_VERSION }} -D ./extensions
 
     
