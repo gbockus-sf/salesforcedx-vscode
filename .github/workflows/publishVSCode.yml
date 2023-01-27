@@ -34,8 +34,17 @@ jobs:
           echo "sfChangeCaseScheduleBuild=offcore.tooling.${{ steps.getMainVersion.outputs.version }}" >> $GITHUB_OUTPUT
       - run: echo "SF_CHANGE_CASE_SCHEDULE_BUILD is ${{ steps.getScheduledBuild.outputs.sfChangeCaseScheduleBuild }}"\
 
-  publish:
+  in-between: 
+    name: "Run between prepare and publish"
     needs: ['prepare-environment-from-main']
+    runs-on: ubuntu-latest
+    steps: 
+      - id: saySomething
+        run: | 
+          echo "hello to all the GHA of the world"
+          
+  publish:
+    needs: ['in-between']
       
     runs-on: ubuntu-latest
     env: 
