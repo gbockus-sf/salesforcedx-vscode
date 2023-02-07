@@ -5,6 +5,11 @@ on:
       branch:
         type: string
         required: false
+  workflow_dispatch:
+    inputs:
+      branch:
+        type: string
+        required: false
 
 jobs:
   windows-integration-tests:
