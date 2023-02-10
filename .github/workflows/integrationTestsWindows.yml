@@ -5,13 +5,12 @@ on:
       branch:
         type: string
         required: false
+  workflow_dispatch: 
 
 jobs:
   windows-integration-tests:
     runs-on: windows-latest
     timeout-minutes: 60
-    env:
-      CODE_VERSION: 1.74.3
     steps:
       - run: git config --global core.autocrlf false
       - uses: actions/checkout@v3
