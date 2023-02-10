@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v3
         if: always()
         with:
-          name: crash-logs-${{ github.ref }}-${{ github.event.repository.updated_at }}
+          name: crash-logs-${{ github.ref }}-${{ github.run_number }}-${{ github.event.repository.updated_at }}
           path: ${{ env.CODE_LOGS }}
           retention-days: 3
         
