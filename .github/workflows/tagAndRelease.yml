@@ -26,6 +26,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.IDEE_GH_TOKEN }}
         run: |
+          echo "pull main"
+          git pull origin main
           echo "remote"
           git remote -v
           git --version
@@ -36,11 +38,11 @@ jobs:
           echo "branch"
           git branch
           echo "pull"
-          git pull
+          git pull origin develop
           echo "merge"
-          git merge main --no-ff --commit --no-edit
+          git merge main --commit --no-edit
           echo "push"
-          git push
+          git push origin develop
 
       - id: complete
         run: |
