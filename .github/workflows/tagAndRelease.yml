@@ -32,6 +32,8 @@ jobs:
           git fetch
           echo "checkout develop"
           git checkout develop
+          echo "merge-base"
+          git merge-base develop main
           echo "pull"
           git pull
           echo "merge"
