@@ -26,10 +26,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.IDEE_GH_TOKEN }}
         run: |
+          echo "fetch"
           git fetch
+          echo "checkout develop"
           git checkout develop
+          echo "pull"
           git pull
+          echo "merge"
           git merge main --no-ff --commit --no-edit
+          echo "push"
           git push
 
       - id: complete
