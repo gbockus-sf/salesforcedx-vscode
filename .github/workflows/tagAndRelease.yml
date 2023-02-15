@@ -28,12 +28,13 @@ jobs:
         run: |
           echo "remote"
           git remote -v
+          git --version
           echo "fetch"
           git fetch
           echo "checkout develop"
           git checkout develop
-          echo "merge-base"
-          git merge-base develop main
+          echo "branch"
+          git branch
           echo "pull"
           git pull
           echo "merge"
