@@ -32,7 +32,7 @@ jobs:
           git remote -v
           git --version
           echo "fetch"
-          git fetch
+          git fetch --unshallow
           echo "checkout develop"
           git checkout develop
           echo "branch"
