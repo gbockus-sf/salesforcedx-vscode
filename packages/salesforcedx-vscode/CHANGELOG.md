@@ -1,12 +1,44 @@
+# 57.2.1 - February 16, 2023
+
+## Fixed
+
+#### salesforcedx-utils-vscode, salesforcedx-utils
+
+We made some updates under the hood. ([PR #4661](https://github.com/forcedotcom/salesforcedx-vscode/pull/4661))
+
+# 57.0.1 - February 3, 2023
+
+## Added
+
+#### salesforcedx-vscode-core
+
+We made some updates under the hood. ([PR #4568](https://github.com/forcedotcom/salesforcedx-vscode/pull/4568))
+
+## Fixed
+
+#### salesforcedx-vscode-core
+
+- We fixed an issue with conflict detection at sync so that more recent changes are correctly deployed. Thank you [Ralph Callaway](https://github.com/ralphcallaway) for creating the issue, and [RanGroen](https://github.com/rangroen) for helping us test it! ([PR #4616](https://github.com/forcedotcom/salesforcedx-vscode/pull/4616), [ISSUE #4585](https://github.com/forcedotcom/salesforcedx-vscode/issues/4585))
+
+
+# 56.16.0 - January 25, 2023
+## Fixed
+
+#### salesforcedx-vscode-core
+
+- You can now run the `SFDX: Create Project` command in a new VS Code window without creating a local workspace in advance. Previously, the command would throw an error when it didn't find a workspace folder. ([PR #4622](https://github.com/forcedotcom/salesforcedx-vscode/pull/4622))
+
 # 56.14.0 - January 11, 2023
 
 ## Added
 
 #### salesforcedx-vscode-core
 
-- You can now give an alias to the Devhub that you are authorizing. Thank you, [Andruts](https://github.com/andruts), for contributing this new feature! We love contributions from the community, and look forward to many more.([PR #4579](https://github.com/forcedotcom/salesforcedx-vscode/pull/4579), [ISSUE #2278](https://github.com/forcedotcom/salesforcedx-vscode/issues/2278))
+- You can now give an alias to the Devhub that you are authorizing. Thank you [Andruts](https://github.com/andruts) for contributing this new feature! ([PR #4579](https://github.com/forcedotcom/salesforcedx-vscode/pull/4579), [ISSUE #2278](https://github.com/forcedotcom/salesforcedx-vscode/issues/2278))
 
-- We now validate the maximum number of characters (40) for an apex class or trigger name and throw an error when this number is exceeded. ([PR #4580](https://github.com/forcedotcom/salesforcedx-vscode/pull/4580))
+- We now validate the maximum number of characters (40) for an apex class or trigger name and throw an error when this number is exceeded. Thank you [Allan Oricil](https://github.com/AllanOricil) for contributing this feature! ([PR #4580](https://github.com/forcedotcom/salesforcedx-vscode/pull/4580), [ISSUE #3624](https://github.com/forcedotcom/salesforcedx-vscode/issues/3624))
+
+We love contributions from the community, and look forward to many more.
 
 ## Fixed
 

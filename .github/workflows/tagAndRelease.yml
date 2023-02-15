@@ -1,0 +1,37 @@
+name: Tag and Release
+
+on:
+  workflow_call:
+    inputs:
+      version:
+        type: string
+        required: true
+  workflow_dispatch:
+
+jobs: 
+  mergeDevelop:
+    runs-on: ubuntu-latest
+    outputs: 
+      status: ${{ steps.complete.outputs.status }}
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+          token: ${{ secrets.IDEE_GH_TOKEN }}
+      - uses: ./.github/actions/gitConfig
+        with:
+          email: ${{ secrets.IDEE_GH_EMAIL }}
+      - run: |
+          git fetch
+          git checkout develop
+          git pull
+          git merge main --no-ff --commit --no-edit
+          git push
+      - id: complete
+        run: |
+         echo "status=complete" >> $GITHUB_OUTPUT
+      - id: finish
+        run: |
+         echo "VSCode Tag and Release Success"
+         
