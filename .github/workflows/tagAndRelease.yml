@@ -22,12 +22,16 @@ jobs:
       - uses: ./.github/actions/gitConfig
         with:
           email: ${{ secrets.IDEE_GH_EMAIL }}
-      - run: |
+      - name: mergeMainIntoDevelop
+        env:
+          GITHUB_TOKEN: ${{ secrets.IDEE_GH_TOKEN }}
+        run: |
           git fetch
           git checkout develop
           git pull
           git merge main --no-ff --commit --no-edit
           git push
+
       - id: complete
         run: |
          echo "status=complete" >> $GITHUB_OUTPUT
