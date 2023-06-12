@@ -9,12 +9,20 @@ jobs:
   githubRelease:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: 'develop'
+          token: ${{ secrets.IDEE_GH_TOKEN }}
       - name: Create remote release
         run: |
           mkdir ./releases
+          echo "1"
           gh release download -D ./releases ${{ github.event.release.tagName}} -p "*.vsix"
+          echo "2"
           ls -l ./releases
+          echo "3"
           gh release create "${{ github.event.release.name }}" ./releases/*.vsix --title "${{ github.event.release.title }}" --notes-file ./CHANGELOG.md -R forcedotcom/Einstein-GPT-for-Developers
+          echo "4"
         env:
           GITHUB_TOKEN: ${{ secrets.IDEE_GH_TOKEN }}
 
