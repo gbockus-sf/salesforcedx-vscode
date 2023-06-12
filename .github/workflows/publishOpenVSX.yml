@@ -12,9 +12,9 @@ jobs:
       - name: Create remote release
         run: |
           mkdir ./releases
-          gh release download -D ./releases ${{ github.release.tagName}} -p "*.vsix"
+          gh release download -D ./releases ${{ github.event.release.tagName}} -p "*.vsix"
           ls -l ./releases
-          gh release create ${{ github.release.name }} ./releases/*.vsix --title "${{ github.release.title }}" --notes-file ./CHANGELOG.md -R forcedotcom/Einstein-GPT-for-Developers
+          gh release create ${{ github.event.release.name }} ./releases/*.vsix --title "${{ github.event.release.title }}" --notes-file ./CHANGELOG.md -R forcedotcom/Einstein-GPT-for-Developers
         env:
           GITHUB_TOKEN: ${{ secrets.IDEE_GH_TOKEN }}
 
