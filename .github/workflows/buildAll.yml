@@ -18,13 +18,16 @@ jobs:
   build-all:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.branch }}
-      - uses: actions/setup-node@v3
+          ref: ${{ inputs.branch-name }}
+          token: ${{ secrets.IDEE_GH_TOKEN }}
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: npm
-      - run: npm install
+      - name: Configure Git for private repo access
+        run: git config --global --add url."https://${{ secrets.IDEE_GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
+      - run: npm ci
       - run: npm --version
       - run: node --version
