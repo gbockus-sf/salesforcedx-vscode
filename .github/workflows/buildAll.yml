@@ -1,38 +1,33 @@
-name: Build All
+name: Build VS Code Extension
 on:
   workflow_call:
     inputs:
-      branch:
-        type: string
+      branch-name:
+        description: Branch name to run this workflow on
         required: false
+        default: ${{ github.ref_name }}
+        type: string
       label:
-        type: string
+        description: Label for the generated vsix artifact
         required: false
-        default: 'VS Code Extensions'
+        default: EFDExtension-${{ github.sha }}
+        type: string
 
 jobs:
   build-all:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
-          ref: ${{ inputs.branch }}
-      - uses: actions/setup-node@v3
+          ref: ${{ inputs.branch-name }}
+          token: ${{ secrets.IDEE_GH_TOKEN }}
+      - uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: npm
+      - name: Configure Git for private repo access
+        run: git config --global --add url."https://${{ secrets.IDEE_GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - run: npm ci
       - run: npm --version
       - run: node --version
-      - run: npm run compile
-      - run: npm run vscode:package
-      - name: Stage Artifacts
-        run: |
-          mkdir extensions
-          find packages -name "*.vsix" -type f -exec cp {} ./extensions \;
-      - name: Upload Extensions
-        uses: actions/upload-artifact@v3
-        with:
-          name: ${{ inputs.label }}
-          path: ./extensions/
-  
+
