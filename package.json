@@ -19,7 +19,6 @@
     "@vscode/webview-ui-toolkit": "^1.4.0",
     "agentic-chat": "github:forcedotcom/cline-fork#semver:0.0.1",
     "axios": "^1.7.4",
-    "codegenie-proto": "file:codegenie-proto",
     "diff": "^5.1.0",
     "einstein-shared": "github:forcedotcom/salesforcedx-vscode-einstein-shared#semver:0.3.5",
     "execa": "^9.6.0",
